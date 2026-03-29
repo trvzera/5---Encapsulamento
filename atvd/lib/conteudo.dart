@@ -5,7 +5,13 @@ abstract class Conteudo {
 
   int get classificacaoIndicativa => _classificacao;
 
-  set validarClassificacao(int valor) => _classificacao = valor;
+  set validarClassificacao(int valor) {
+    if (valor < 0) {
+      throw Exception("A classificação não pode ser negativa!");
+    }
+    _classificacao = valor;
+  }
+  
   void darPlay();
 }
 
