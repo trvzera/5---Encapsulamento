@@ -1,7 +1,8 @@
 abstract class Conteudo {
   String titulo;
   int _classificacao = 0;
-  Conteudo(this.titulo);
+  int id = 0;
+  Conteudo(this.titulo, this.id);
 
   int get classificacaoIndicativa => _classificacao;
 
@@ -11,16 +12,22 @@ abstract class Conteudo {
     }
     _classificacao = valor;
   }
-  
+
+  Map<String, dynamic> toJson();
   void darPlay();
 }
 
 class Filme extends Conteudo {
-  Filme(String titulo) : super(titulo);
-  
+  Filme(String titulo, int id) : super(titulo, id);
+
   @override
   void darPlay() {
     print("Reproduzindo filme: $titulo");
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {'titulo': titulo, 'classificacao': classificacaoIndicativa};
   }
 }
 
@@ -30,5 +37,14 @@ class Serie extends Conteudo {
   @override
   void darPlay() {
     print("Reproduzindo séria: $titulo com $temporadas");
+  }
+
+  @override
+  Map<String, dynamic> toJson() {
+    return {
+      'titulo': titulo,
+      'classificacao': classificacaoIndicativa,
+      'temporadas': temporadas
+    };
   }
 }

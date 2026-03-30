@@ -1,3 +1,5 @@
+== PARTE 1 ==
+
 1. **Qual a função do modificador de acesso privado (o uso do underscore "_" antes do nome da variável) no Dart?**
    Restringir o acesso à variável apenas ao arquivo `.dart` em que foi declarada.
 
@@ -39,4 +41,11 @@
    (Resposta Pessoal. Exemplo: Entender que o exercício exigia o uso da classe nativa `File` do `dart:io` e não a criação de uma classe nova, além de compreender que a mensagem de "Erro gerado" no console não era uma falha do código, mas sim o comportamento correto e esperado do Try-Catch barrando a classificação negativa.)
 
 
+== PARTE 2 ==
+
+O que muda visualmente na estrutura de um arquivo JSON quando precisamos armazenar vários itens (uma lista) em vez de apenas um objeto único?
+Explique com suas palavras o que o Dart entende quando tipamos uma variável como List<Map<String, dynamic>> após ler um arquivo JSON. O que é a Lista e o que é o Map neste contexto?
+Qual é a principal diferença de legibilidade e funcionamento entre um laço for tradicional (usando i++) e o laço for-in (ex: for (var item in dados))?
+Ao criar uma lista para o nosso catálogo no Dart, usamos a tipagem List<Conteudo>. Baseado no conceito de Polimorfismo, por que essa lista aceita tanto objetos do tipo Filme quanto do tipo Serie?
+Para que serve o método .map() em uma lista no Dart e por que costumamos colocar um .toList() logo após ele?
 

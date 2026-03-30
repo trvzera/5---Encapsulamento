@@ -2,16 +2,37 @@ import 'package:atvd/conteudo.dart' as atvd;
 import 'dart:convert';
 import 'dart:io';
 
-void main(List<String> arguments) {
-  File arquivo = File('dados.json');
-  String conteudo = arquivo.readAsStringSync();
-  Map<String, dynamic> mapaFormatado = jsonDecode(conteudo);
-  print(mapaFormatado);
-  atvd.Filme filme1 = atvd.Filme(mapaFormatado['titulo']);
+import '../lib/conteudo.dart';
 
-  try {
-    filme1.validarClassificacao = mapaFormatado['classificacao'];
-  } catch (e) {
-    print('Erro gerado: $e');
+void main(List<String> arguments) {
+  List<Conteudo> catalogo = [];
+
+  final arquivo = File('./dados.json');
+
+  if (arquivo.existsSync()) {
+    List<dynamic> dados = jsonDecode(arquivo.readAsStringSync());
+    for (var item in dados) {
+      var filme = Filme(item['titular']);
+      filme.validarClassificacao = item['saldo'];
+      catalogo.add(filme);
+    }
+    stdout.write('ID do Novo Filme: ');
+    String id = stdin.readLineSync()!;
+    stdout.write('Nome do Novo Filme: ');
+    String nome = stdin.readLineSync()!;
+    stdout.write('Classificação do Novo Filme: ');
+    String classificacaoInput = stdin.readLineSync()!;
+    int classificacao = int.parse(classificacaoInput);
+    for (var nome in dados)
+      if (id == id) {
+        
+      }
+    catalogo.add(Filme(id));
+    catalogo.add(Filme(nome));
+    catalogo.add(Filme(classificacaoInput));
+
+
+    print('✅ Conta de $nome criada com sucesso!');
+
   }
 }

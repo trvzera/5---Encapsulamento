@@ -1,4 +1,7 @@
-{
-    "titulo": "Coringa", 
-    "classificacao": -5
-}
+[
+  {
+    "ID": 0,
+    "titulo": "Coringa",
+    "classificacao": 16
+  }
+]
