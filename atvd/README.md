@@ -54,12 +54,22 @@
 
 
 4. **Ao criar uma lista para o nosso catálogo no Dart, usamos a tipagem List<Conteudo>. Baseado no conceito de Polimorfismo, por que essa lista aceita tanto objetos do tipo Filme quanto do tipo Serie?**
-   
-Para que serve o método .map() em uma lista no Dart e por que costumamos colocar um .toList() logo após ele?
+   Porque ambas as classes herdam da classe abstrata `Conteudo`. No polimorfismo, uma subclasse pode ser tratada como sua superclasse, permitindo que a lista armazene qualquer objeto que implemente o "contrato" de `Conteudo`.
 
+5. **Para que serve o método .map() em uma lista no Dart e por que costumamos colocar um .toList() logo após ele?**
+   O `.map()` é usado para transformar cada elemento da lista em um novo formato (ex: transformar objetos em Maps). Ele retorna um `Iterable`, por isso usamos o `.toList()` para converter o resultado de volta em uma `List` utilizável.
 
-O que aconteceu com o arquivo dados.json no seu computador logo após você executar o programa completo (passando pelo CREATE, DELETE e UPDATE DO ARQUIVO)?
-Se no passo 4 (CREATE) você tivesse adicionado um objeto da classe Serie em vez de Filme, o código daria erro? Por quê?
-Qual foi o maior benefício de ter criado o método toJson() dentro das classes filhas, em vez de tentar montar o Map manualmente direto no main.dart?
-Durante a leitura do JSON com o for-in, o seu Encapsulamento (o Setter de validação da classificação) continuou protegendo o sistema de dados negativos?
-Qual foi a etapa mais desafiadora da implementação do CRUD usando arquivos?
+6. **O que aconteceu com o arquivo dados.json no seu computador logo após você executar o programa completo (passando pelo CREATE, DELETE e UPDATE DO ARQUIVO)?**
+   O arquivo foi atualizado refletindo o estado final da lista em memória. O programa sobrescreve o conteúdo do arquivo com a nova lista de objetos convertida em String JSON após cada operação de escrita.
+
+7. **Se no passo 4 (CREATE) você tivesse adicionado um objeto da classe Serie em vez de Filme, o código daria erro? Por quê?**
+   Não daria erro. Como a lista é do tipo `List<Conteudo>`, ela aceita tanto `Filme` quanto `Serie`. O Dart gerencia as diferenças entre elas através do polimorfismo, usando o método `toJson()` correto de cada uma.
+
+8. **Qual foi a maior vantagem de ter criado o método toJson() dentro das classes filhas, em vez de tentar montar o Map manualmente direto no main.dart?**
+   Centralização da lógica e facilidade de manutenção. Cada classe assume a responsabilidade de saber como deve ser representada em JSON. Se a classe `Serie` ganhar novos atributos, a alteração é feita apenas nela, mantendo o `main.dart` limpo.
+
+9. **Durante a leitura do JSON com o for-in, o seu Encapsulamento (o Setter de validação da classificação) continuou protegendo o sistema de dados negativos?**
+   Sim. Mesmo vindo de um arquivo externo, ao passar o valor para o objeto através do setter `validarClassificacao`, a regra de negócio (não permitir negativos) é executada, garantindo a integridade dos dados.
+
+10. **Qual foi a etapa mais desafiadora da implementação do CRUD usando arquivos?**
+    Garantir que a conversão de `List<dynamic>` vinda do `jsonDecode` fosse mapeada corretamente para objetos reais do sistema, mantendo o tratamento de erros funcional com o `try-catch`.
